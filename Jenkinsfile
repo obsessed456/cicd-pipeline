@@ -22,11 +22,23 @@ pipeline {
                  sh 'docker build -t $IMAGE:v1.0 .'
              }
          }
-         stage('Deploy') {
-             steps { 
-                 sh 'docker rm -f $IMAGE || true'
-                 sh 'docker run -d --expose $PORT --name $IMAGE -p $PORT:3000 $IMAGE:v1.0'
+         stage('Push') {
+             steps {
+                 withCredentials([usernamePassword(credentialsId: 'dockerhub',
+                     usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+                     sh 'echo $DH_PASS | docker login -u "$DH_USER" --password-stdin'
+                     sh 'docker tag $IMAGE $DH_USER/$IMAGE:v1.0'
+                     sh 'docker push $DH_USER/$IMAGE:v1.0'
+                 }
              }
-         } 
+         }
+         stage('Trigger Deploy') {
+             steps {
+                 script {
+                     def job = env.BRANCH_NAME == 'main' ? 'Deploy_to_main' : 'Deploy_to_dev'
+                     build job: job, wait: false
+                 }
+             }
+         }
     }
-}  
+}
