@@ -25,7 +25,7 @@ pipeline {
          stage('Deploy') {
              steps { 
                  sh 'docker rm -f $IMAGE || true'
-                 sh 'docker run -d --expose --name $IMAGE $PORT -p $PORT:3000 $IMAGE:v1.0'
+                 sh 'docker run -d --expose $PORT --name $IMAGE -p $PORT:3000 $IMAGE:v1.0'
              }
          } 
     }
