@@ -5,9 +5,9 @@ pipeline {
      environment {
         IMAGE = "${env.BRANCH_NAME == 'main' ? 'nodemain' : 'nodedev'}"
         PORT = "${env.BRANCH_NAME == 'main' ? '3000' : '3001'}"
-    }
+     }
 
-    stages {
+     stages {
         stage('Build') {
             steps {
                 sh 'npm install'
@@ -40,5 +40,5 @@ pipeline {
                  }
              }
          }
-    }
+     }
 }
