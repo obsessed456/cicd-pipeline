@@ -1,0 +1,14 @@
+ pipeline {
+     agent any
+
+     stages {
+         stage('Deploy') {
+             steps {
+                 sh 'docker pull obsessed456/nodedev:v1.0'
+                 sh 'docker rm -f nodedev || true'
+                 sh 'docker run -d --name nodedev -p 3001:3000 obsessed456/nodedev:v1.0'
+             }
+         }
+     }
+ }
+          
