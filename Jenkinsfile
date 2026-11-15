@@ -22,6 +22,14 @@ pipeline {
                  sh 'docker build -t $IMAGE:v1.0 .'
              }
          }
+         stage('Trivy Scan') {
+             steps {
+                 script {
+                     def vulnerabilities = sh(script: "trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress ${IMAGE}:v1.0", returnStdout: true).trim()
+                     echo "Vulnerability Report:\n${vulnerabilities}"
+                 }
+             }
+         }
          stage('Push') {
              steps {
                  withCredentials([usernamePassword(credentialsId: 'dockerhub',
