@@ -64,7 +64,6 @@ The same `Jenkinsfile` is used on both branches. The branch name selects the ima
 |---|---|
 | Jenkins dashboard | `docs/images/dashboard.png` |
 | CICD branches | `docs/images/branches.png` |
-| Stage view | `docs/images/stages.png` |
 | App on `main` (:3000) | `docs/images/app-main.png` |
 | App on `dev` (:3001) | `docs/images/app-dev.png` |
 
