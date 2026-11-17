@@ -60,12 +60,17 @@ The same `Jenkinsfile` is used on both branches. The branch name selects the ima
 
 ## Screenshots
 
-| | |
-|---|---|
-| Jenkins dashboard | `docs/images/dashboard.png` |
-| CICD branches | `docs/images/branches.png` |
-| App on `main` (:3000) | `docs/images/app-main.png` |
-| App on `dev` (:3001) | `docs/images/app-dev.png` |
+### Jenkins dashboard
+![Jenkins dashboard](docs/images/dashboard.png)
+
+### CICD multibranch pipeline (main and dev)
+![CICD branches](docs/images/branches.png)
+
+### Deployed app on main (port 3000)
+![App on main](docs/images/app-main.png)
+
+### Deployed app on dev (port 3001)
+![App on dev](docs/images/app-dev.png)
 
 ## Challenges and fixes
 
