@@ -44,7 +44,7 @@ The same `Jenkinsfile` is used on both branches. The branch name selects the ima
 - **Branch-based environments:** `main` on port 3000 and `dev` on port 3001.
 - **Automatic branch discovery:** the multibranch job scans the repo every minute.
 - **Low-downtime deploys:** the new image is built or pulled first. Only then is the old container removed and the new one started.
-- **Shared library:** `deployContainer` (in `vars/`) holds the pull, remove and run logic and is reused by both deploy jobs. Library repo: `<link to jenkins-shared-lib>`
+- **Shared library:** `deployContainer` (in `vars/`) holds the pull, remove and run logic and is reused by both deploy jobs. Library repo: `[jenkins-shared-lib](https://github.com/obsessed456/jenkins-shared-lib)`
 - **Role-based access:** `devops` (full control), `dev` (run jobs) and `qa` (read logs only).
 - **Secrets management:** the Docker Hub token is stored in Jenkins Credentials, never in the repo.
 
